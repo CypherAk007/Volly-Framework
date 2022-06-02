@@ -1,6 +1,8 @@
 package com.example.vollyframework;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -26,6 +28,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //new1-
+        final RecyclerView userList =(RecyclerView) findViewById(R.id.userList);
+        userList.setLayoutManager(new LinearLayoutManager(this));
+
         //2 string request in volly library
         // 1st parameter - URL 2nd-response  3rd - error]
 
@@ -38,6 +44,9 @@ public class MainActivity extends AppCompatActivity {
                 Gson gson = gsonBuilder.create();
                 //5 gsons method to parse the response
                 User[] users =gson.fromJson(response,User[].class);
+
+                //new 2 setting adapter
+                userList.setAdapter(new GithubAdapter(MainActivity.this,users));
             }
         }, new Response.ErrorListener(){
             @Override
