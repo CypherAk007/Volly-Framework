@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -39,6 +40,15 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.GithubView
         holder.txtUser.setText(user.getLogin());
         // bind the image view
         Glide.with(holder.imgUser.getContext()).load(user.getAvatarUrl()).into(holder.imgUser);
+
+        // capture the clickevent
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Toast.makeText(context, user.getLogin()+" was clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
     }
 
     @Override
