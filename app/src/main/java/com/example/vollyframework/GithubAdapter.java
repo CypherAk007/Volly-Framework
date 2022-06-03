@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
-public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.GithubViewHolder> {
+public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.GithubViewHolder> implements Filterable {
 
     private Context context;
     private User[] data;
@@ -54,6 +56,11 @@ public class GithubAdapter extends RecyclerView.Adapter<GithubAdapter.GithubView
     @Override
     public int getItemCount() {
         return data.length;
+    }
+
+    @Override
+    public Filter getFilter() {
+        return null;
     }
 
     public class GithubViewHolder extends RecyclerView.ViewHolder{
